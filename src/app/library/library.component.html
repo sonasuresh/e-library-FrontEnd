@@ -7,6 +7,10 @@
     <h2 style="font-family: Oswald">
         List of books Available In Library!
     </h2>
+    <span style="float: right;margin-bottom: 2%;">
+      <input #name (keyup)="onEnter(name.value)" placeholder="&#xF002; Enter Book Name" class="form-control mr-sm-2 "
+      style="font-family:Arial, FontAwesome" title="Search based on Book Name" />
+    </span>
 </div>
   <div class="table-responsive"  style="margin-top: 20px;">
     <table class="table table-hover">
@@ -16,8 +20,9 @@
             <th scope="col">Description</th>
             <th scope="col">Price</th>
             <th scope="col">Availablity</th>
-            <th scope="col">Issable Status</th>
+            <th scope="col">Issuable Status</th>
             <th scope="col">View</th>
+            <th scope="col" *ngIf="getAdminLoggedIn()">Delete Book</th>
           </tr>
         </thead>
         <tbody>
@@ -32,7 +37,9 @@
 
             <td >{{book.issuableStatus==true?'Take Away':'In House'}}</td>
             <td> <button type="button" class="btn btn-outline-info" [disabled]="!book.availableStatus" (click)="viewBook(book._id)">View More</button></td>
-         </tr>
+            <td scope="col" *ngIf="getAdminLoggedIn()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style="color:red; cursor: pointer;" (click)="deleteBook(book._id)"  class="fa fa-trash" aria-hidden="true"></i></td>
+            
+          </tr>
         </tbody>
       </table>
     </div>

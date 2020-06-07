@@ -6,6 +6,7 @@
     <h2 style="font-family: Oswald">
        All Users!
     </h2>
+    
 </div>
   <div class="table-responsive"  style="margin-top: 20px;">
     <table class="table table-hover">
@@ -26,20 +27,20 @@
         </thead>
         <tbody>
           <tr *ngFor="let user of users;let i=index">
-            <th>{{user.name}}</th>
+            <th>{{user.users.name}}</th>
             <td >{{user.email}}</td>
-            <td >{{user.dob|date}}</td>
-            <td>{{user.mobile}}</td>
-            <td >{{user.city}}</td>
-            <td >{{user.membershipStart|date}}</td>
-            <td >{{user.membershipEnd|date}}</td>  
-            <td >{{user.readingHours}} hrs</td>
-            <td *ngIf="user.activeStatus"><p style="color: green;">Active</p></td>
-            <td *ngIf="!user.activeStatus"><p style="color: red;">InActive</p></td>
+            <td >{{user.users.dob|date}}</td>
+            <td>{{user.users.mobile}}</td>
+            <td >{{user.users.city}}</td>
+            <td >{{user.users.membershipStart|date}}</td>
+            <td >{{user.users.membershipEnd|date}}</td>  
+            <td >{{user.users.readingHours}} hrs</td>
+            <td *ngIf="user.users.activeStatus"><p style="color: green;">Active</p></td>
+            <td *ngIf="!user.users.activeStatus"><p style="color: red;">InActive</p></td>
 
-            <td *ngIf="user.activeStatus"><button type="button" class="btn btn-outline-danger" (click)="toogleActiveStatus(user._id,false)">Deactive</button></td>
-            <td *ngIf="!user.activeStatus"><button type="button" class="btn btn-outline-success" (click)="toogleActiveStatus(user._id,true)">Activate</button></td>
-            <td>&nbsp;&nbsp;&nbsp;<i style="color:red; cursor: pointer;" (click)="deleteUser(user._id)" class="fa fa-trash" aria-hidden="true"></i></td>
+            <td *ngIf="user.users.activeStatus"><button type="button" class="btn btn-outline-danger" (click)="toogleActiveStatus(user.users._id,false)">Deactive</button></td>
+            <td *ngIf="!user.users.activeStatus"><button type="button" class="btn btn-outline-success" (click)="toogleActiveStatus(user.users._id,true)">Activate</button></td>
+            <td>&nbsp;&nbsp;&nbsp;<i style="color:red; cursor: pointer;" (click)="deleteUser(user.users._id)" class="fa fa-trash" aria-hidden="true"></i></td>
           </tr>
         </tbody>
       </table>

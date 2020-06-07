@@ -102,18 +102,25 @@ export class BookrequestComponent implements OnInit {
   }
 
   sendReturnRequest(bookId,requestId){
+    var date=new Date()
+    if((date.getHours()>=10 && date.getHours()<17)){
     const body={
       requestId,
       bookId,
       userId:JSON.parse(sessionStorage.getItem(('user')))
     }
-    this.bookService.sendReturnRequest(body).subscribe((res: any) => {
-      if(res.success){
-        window.location.reload()
-      }else{
-        alert('Error in Processing the request!')
-      }
-    })
+   
+      this.bookService.sendReturnRequest(body).subscribe((res: any) => {
+        if(res.success){
+          window.location.reload()
+        }else{
+          alert('Error in Processing the request!')
+        }
+      })
+    }else{
+      alert("Return Time Exceeded")
+    }
+   
   }
 
   getUserLoggedIn()

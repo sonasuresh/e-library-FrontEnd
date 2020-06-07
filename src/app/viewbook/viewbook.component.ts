@@ -37,15 +37,27 @@ export class ViewbookComponent implements OnInit {
   }
 
   issueBook() {
-    const data = {
-      bookId: this.bookId,
-      userId: JSON.parse(sessionStorage.getItem('user')),
-      type: this.typeValue
+    var date=new Date()
+    if((date.getHours()>=10 && date.getHours()<17)){
+      const data = {
+        bookId: this.bookId,
+        userId: JSON.parse(sessionStorage.getItem('user')),
+        type: this.typeValue
+      }
+      try{
+        this.bookService.sendIssueRequest(data).subscribe((res: any) => {
+          alert('Issue Request Sent Successfully!')
+  
+       })
+        
+      }catch(error){
+        alert('Error in sending issue request')
+      }
+    }else{
+      alert("Issue Time Exceeded")
     }
-    this.bookService.sendIssueRequest(data).subscribe((res: any) => {
-      console.log(res)
-    })
-    alert("Inside IssueBook")
+    
+   
   }
   setTypeValue(event) {
     this.typeValue = event.target.value
@@ -58,9 +70,32 @@ export class ViewbookComponent implements OnInit {
     return this.authenticationService.isAdminLoggedIn();
   }
   updateBook(_id) {
-    // const Payload
-    console.log(this.book,this.authors,this.issuablestatus)
-    console.log(_id)
+    const Payload={
+      ...this.book
+    }
+    var auth={
+      author:[]
+    }
+    for (var i in this.authors) {
+
+      var item = this.authors[i];
+
+      auth.author.push({
+        "name": item
+      });
+    }
+    Payload.author=auth.author
+    Payload.id=_id
+    Payload.availableStatus=this.availablestatus
+    Payload.issuableStatus=this.issuablestatus
+    this.bookService.updateBookDetails(Payload).subscribe((res: any) => {
+      if(res.success){
+        alert('Book Details Updated Successfully!')
+        window.location.reload()
+      }else{
+        alert('Error in Updating Book Details!')
+      }
+    })
   }
   setChecked(value){
    this.issuablestatus=value

@@ -43,7 +43,7 @@ export class UsersComponent implements OnInit {
       if(res.success){
         this.users=res.message
       
-       
+       console.log(this.users)
       }else{
         alert('Error in Processing the request!')
       }

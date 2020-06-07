@@ -16,6 +16,9 @@ export class BookService {
     return this.http.get(config.URL + `/book/${bookId}`)
 
   }
+  getAllBooksBasedOnName(bookName){
+    return this.http.get(config.URL + `/book/search/${bookName}`)
+  }
 
   getRequestedBooks(){
     return this.http.get(config.URL + `/book/user/requested/${JSON.parse(sessionStorage.getItem(('user')))}`)
@@ -66,5 +69,12 @@ export class BookService {
   addNewBook(Payload:any){
     return this.http.post(config.URL+`/book/`, Payload)
     
+  }
+  updateBookDetails(Payload:any){
+    return this.http.put(config.URL+`/book/`, Payload)
+    
+  }
+  deleteBook(id:any){
+    return this.http.delete(config.URL+`/book/${id}`)
   }
 }

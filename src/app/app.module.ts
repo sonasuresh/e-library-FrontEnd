@@ -4,7 +4,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { BooksComponent } from './books/books.component';
 import { UsersComponent } from './users/users.component';
 import { CreateuserComponent } from './createuser/createuser.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +22,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     AppComponent,
     NavbarComponent,
-    BooksComponent,
     UsersComponent,
     CreateuserComponent,
     BookrequestComponent,
