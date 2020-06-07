@@ -1,0 +1,51 @@
+<app-navbar ></app-navbar>
+<div class="container" style="margin-top: 20px;">
+    <div *ngIf="requestType!='Current'" style="margin-top: 5%;margin-bottom: 5%;">
+        <h2 style="font-family: Oswald">
+            List of books for {{requestType}} Requests
+        </h2>
+    </div>
+    <div *ngIf="requestType=='Current'" style="margin-top: 5%;margin-bottom: 5%;">
+      <h2 style="font-family: Oswald">
+          List of books are currently with you
+      </h2>
+  </div>
+    <div>
+        <div class="table-responsive"  style="margin-top: 20px;">
+            <table class="table table-hover">
+                <thead class="thead-info table-info ">
+                  <tr>
+                    <th *ngIf="getAdminLoggedIn()" scope="col">User Name</th>
+                    <th *ngIf="getAdminLoggedIn()" scope="col">Email</th>
+                    <th scope="col">Book Name</th>
+                    <th scope="col">Book ISBN</th>
+                    <th scope="col">Issue Request Date</th>
+                    <th scope="col">Book Requested For</th>
+
+                    <th *ngIf="displayReturnRequestDate()" scope="col">Return Request Date</th>
+                    <th *ngIf="getAdminLoggedIn()" scope="col">Approve Request</th>
+                    <th *ngIf="getAdminLoggedIn()" scope="col">Reject Request</th>
+                    <th *ngIf="displayReturn()" scope="col">Return Book</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let book of requestedBooks;let i=index">
+                    <td *ngIf="getAdminLoggedIn()" >{{book?.user?.name}}</td>
+                    <td *ngIf="getAdminLoggedIn()" >{{book?.user?.email}}</td>
+                    <td >{{book?.books?.name}}</td>
+                    <td >{{book?.books?.isbn}}</td>
+                    
+                    <td>{{book?.issueRequestDate|date}}</td>
+                    <td >A {{book?.type}}</td>
+                    <td *ngIf="displayReturnRequestDate()">Return Request Date</td>
+                    <td *ngIf="getAdminLoggedIn()"> <button type="button" class="btn btn-outline-success" (click)="processRequest(book._id,true)">Approve</button></td>
+                    <td *ngIf="getAdminLoggedIn()"> <button type="button" class="btn btn-outline-danger" (click)="processRequest(book._id,false)">Reject</button></td>
+                    <td *ngIf="displayReturn()"> <button type="button" class="btn btn-outline-danger" (click)="sendReturnRequest(book.books._id,book._id)">Return</button></td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+            </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,27 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+      <div align="center">
+          <h1 class="display-4 color"><strong>Library</strong></h1>
+      </div>
+      <p class="lead"></p>
+  </div>
+</div>
+
+<div class="container" style="width: 40em;">
+
+  <form [formGroup]="loginForm">
+      <div class="card border-info">
+          <div class="card-header">Login Information</div>
+          <div class="card-body text-info">
+              <p class="card-text">Name<input type="email" formControlName="loginEmail" class="form-control" id="email_txt"
+                      placeholder="Name" size="10" required></p>
+              <br />
+              <p class="card-text">Password<input type="password" formControlName="loginPassword" class="form-control"
+                      id="pass_txt" placeholder="********" size="20" required></p>
+              <p class="card-text"><button type="submit" (click)="loginUser()" class="btn btn-info"
+                      style="margin-left:auto;margin-right:auto;display:block;margin-top:10%;margin-bottom:0%">Login</button>
+              </p>
+          </div>
+      </div>
+  </form>
+</div>

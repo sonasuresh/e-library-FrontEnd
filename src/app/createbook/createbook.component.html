@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div style="margin-top: 5%;margin-bottom: 5%;">
+        <h2 style="font-family: Oswald">
+            Add New Book..!!
+        </h2>
+    </div>
+    <div>
+        <form [formGroup]="bookForm">
+               
+               
+                <div class="container">
+
+                    <div class="form-group row">
+                        <label for="colFormLabel" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" formControlName="name" id="name"  required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="colFormLabel" class="col-sm-2 col-form-label">Description</label>
+                        <div class="col-sm-10">
+                            <!-- <angular-editor formControlName="content" rows="4" ></angular-editor> -->
+                            <textarea class="form-control" id="description" formControlName="description" rows="3" required></textarea>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group row">
+                        <label for="colFormLabel" class="col-sm-2 col-form-label">ISBN</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" formControlName="isbn" id="isbn"
+                                required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="colFormLabel" class="col-sm-2 col-form-label">Price</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" formControlName="price" id="price" 
+                                required>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group row">
+                        <label for="colFormLabel" class="col-sm-2 col-form-label">Issuable Status</label>
+                        <div class="form-check form-check-inline">&nbsp;&nbsp;&nbsp;
+                            <input class="form-check-input" type="radio" formControlName="issuableStatus"  id="inlineRadio1" value=true>
+                            <label class="form-check-label" for="inlineRadio1">Issuable Book</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" formControlName="issuableStatus"  id="inlineRadio2" value=false>
+                            <label class="form-check-label" for="inlineRadio2">In House Book</label>
+                          </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="colFormLabel" class="col-sm-2 col-form-label">Author</label>
+                        <div class="col-sm-10">
+                            <tag-input placeholder="Enter Authors of the book" secondaryPlaceholder="Enter Author of the book" formControlName="auth" [(ngModel)]="author" [modelAsStrings]="true">
+                            </tag-input>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-info" (click)="addBook()"><i class="fa fa-floppy-o"
+                            aria-hidden="true"></i>&nbsp;Add To Library</button>&nbsp;
+
+                </div>
+        </form>
+    </div>
+</div>

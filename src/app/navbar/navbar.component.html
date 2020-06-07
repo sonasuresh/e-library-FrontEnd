@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar navbar-info bg-info">
+    <a class="navbar-brand" href="/">APP NAME</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+          <a class="navbar-brand"  href="/books">Books </a>
+        </li>
+        <li class="nav-item ">
+          <a class="navbar-brand"  href="/library">Library </a>
+        </li>
+        <li class="nav-item"  *ngIf="getAdminLoggedIn()">
+            <a class="navbar-brand" href="/users">Users</a>
+        </li>
+        <li class="nav-item"  *ngIf="getAdminLoggedIn()">
+            <a class="navbar-brand" href="/registeruser">Add User</a>
+        </li>
+        <li class="nav-item"  *ngIf="getAdminLoggedIn()">
+          <a class="navbar-brand" href="/createbook">Add Book</a>
+      </li>
+        <li class="nav-item dropdown">
+          <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdownMenuBrand" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{requestBanner}}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuBrand">
+            <a class="dropdown-item" style="color:black;" (click)="setRequestType('Issue')" href="/request">{{issueRequestBanner}}</a>
+            <a class="dropdown-item" style="color:black;" (click)="setRequestType('Return')" href="/request">{{returnRequestBanner}}</a>
+            <a *ngIf="getUserLoggedIn()"  style="color:black;"class="dropdown-item" (click)="setRequestType('Current')" href="/request">Books in Hand</a>
+          </div>
+        </li>
+        <li *ngIf="getUserLoggedIn()" class="nav-item ">
+          <a class="navbar-brand"  href="/profile">My Profile </a>
+        </li>
+        <li class="nav-item">
+          <a class="navbar-brand" href="/history">{{historyBanner}}</a>
+      </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit" (click)="logout()">LOG OUT</button>
+      </form>
+    </div>
+  </nav>

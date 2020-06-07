@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+
+
+<div style="margin-top: 20px;margin-left:50px;margin-right:50px">
+  <div style="margin-top: 5%;margin-bottom: 1%;">
+    <h2 style="font-family: Oswald">
+       All Users!
+    </h2>
+</div>
+  <div class="table-responsive"  style="margin-top: 20px;">
+    <table class="table table-hover">
+        <thead class="thead-info table-info">
+          <tr>
+            <th scope="col">User Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Date of Birth</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">City</th>
+            <th scope="col">Membership start date</th>
+            <th scope="col">Membership end date</th>
+            <th scope="col">Reading Hours</th>
+            <th scope="col">Active Status</th>
+            <th scope="col">Toggle Status</th>
+            <th scope="col">Delete User</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users;let i=index">
+            <th>{{user.name}}</th>
+            <td >{{user.email}}</td>
+            <td >{{user.dob|date}}</td>
+            <td>{{user.mobile}}</td>
+            <td >{{user.city}}</td>
+            <td >{{user.membershipStart|date}}</td>
+            <td >{{user.membershipEnd|date}}</td>  
+            <td >{{user.readingHours}} hrs</td>
+            <td *ngIf="user.activeStatus"><p style="color: green;">Active</p></td>
+            <td *ngIf="!user.activeStatus"><p style="color: red;">InActive</p></td>
+
+            <td *ngIf="user.activeStatus"><button type="button" class="btn btn-outline-danger" (click)="toogleActiveStatus(user._id,false)">Deactive</button></td>
+            <td *ngIf="!user.activeStatus"><button type="button" class="btn btn-outline-success" (click)="toogleActiveStatus(user._id,true)">Activate</button></td>
+            <td>&nbsp;&nbsp;&nbsp;<i style="color:red; cursor: pointer;" (click)="deleteUser(user._id)" class="fa fa-trash" aria-hidden="true"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

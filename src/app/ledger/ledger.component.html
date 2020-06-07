@@ -1,0 +1,40 @@
+<app-navbar ></app-navbar>
+<div class="container" style="margin-top: 20px;">
+  <div style="margin-top: 5%;margin-bottom: 5%;">
+    <h2 style="font-family: Oswald">
+        History Books!
+   <br/> <span  *ngIf="getUserLoggedIn()" style="float: right;color:grey;font-size: medium;"><button type="button" class="btn btn-outline-secondary" (click)="clearAllHistory()">Clear All</button></span>
+
+    </h2> 
+  </div>  
+    <div>
+        <div class="table-responsive"  style="margin-top: 20px;">
+            <table class="table table-hover">
+                <thead class="thead-info table-info">
+                  <tr>
+                    <th *ngIf="getAdminLoggedIn()" scope="col">User Name</th>
+                    <th *ngIf="getAdminLoggedIn()"scope="col">Email</th>
+                    <th scope="col">Book Name</th>
+                    <th scope="col">Book ISBN</th>
+                    <th scope="col">Issue Request Date</th>
+                    <th scope="col">Return Request Date</th>
+                    <th *ngIf="getUserLoggedIn()" scope="col">Remove Record</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let book of historyBooks;let i=index">
+                    <td *ngIf="getAdminLoggedIn()">{{book?.users?.name}}</td>
+                    <td *ngIf="getAdminLoggedIn()">{{book?.users?.email}}</td>
+                    <td >{{book?.books?.name}}</td>
+                    <td >{{book?.books?.isbn}}</td>
+                    <td >{{book?.issueRequestDate|date}}</td>
+                    <td >{{book?.returnRequestDate|date}}</td>
+                    <td  *ngIf="getUserLoggedIn()" ><button type="button" class="btn btn-outline-secondary" (click)="removeRecord(book._id)">Clear</button></td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+    </div>
+  </div>
+  

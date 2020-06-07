@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div style="margin-top: 5%;margin-bottom: 5%;">
+        <h2 style="font-family: Oswald">
+            Add New user..!!
+        </h2>
+    </div>
+<form [formGroup]="signupForm" (ngSubmit)="createUser()">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <div [ngClass]="{'errorField' : signupForm.get('name').errors && (signupForm.get('name').touched || signupForm.get('name').dirty)}"><input type="text" formControlName="name" name="name" class="form-control" id="username" placeholder="User Name" aria-describedby="name" required></div>
+            <span *ngIf="signupForm.get('name').errors && (signupForm.get('name').touched || signupForm.get('name').dirty)">
+                <span style="color:red;font-size:15px">User name is madantory</span>
+            </span>
+        </div>
+        <div class="form-group col-md-6">
+            <div [ngClass]="{'errorField' : ((signupForm.get('email').errors && (signupForm.get('email').touched || signupForm.get('email').dirty)) && signupForm.get('email').touched)}"><input type="email" class="form-control" formControlName="email" id="email" placeholder="Email" required></div>
+            <span *ngIf="((signupForm.get('email').errors && (signupForm.get('email').touched || signupForm.get('email').dirty)) && signupForm.get('email').touched)">
+                <span style="color:red;font-size:15px">Check the mail format</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <input type="text" formControlName="city" name="city" class="form-control" id="city" placeholder="City Name" aria-describedby="username" required>
+        </div>
+        <div class="form-group col-md-6">
+            <div [ngClass]="{'errorField' : ((signupForm.get('mobile').errors && (signupForm.get('mobile').touched || signupForm.get('mobile').dirty)) && signupForm.get('mobile').touched)} "><input type="text" formControlName="mobile" name="mobile" class="form-control" id="mobile" aria-describedby="mobile" placeholder="Mobile" ></div>
+            <span *ngIf="((signupForm.get('mobile').errors && (signupForm.get('mobile').touched || signupForm.get('mobile').dirty)) && signupForm.get('mobile').touched)">
+                <span style="color:red;font-size:15px">Mobile number is of 10 digits</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Birthday </label>
+            <input type="date" class="form-control" formControlName="dob" id="dob" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label>Membership Read Hours </label>
+            <input type="text" formControlName="readingHours" name="readingHours" class="form-control" id="readingHours" placeholder="Member Ship Read Hours" aria-describedby="readhours" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Membership start date </label>
+            <input type="date" class="form-control" formControlName="membershipStart" id="membershipStart" required>
+        </div>
+        <div class="form-group col-md-6">
+            <label>Membership end date </label>
+            <input type="date" class="form-control" formControlName="membershipEnd" id="membershipEnd" required>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-info">Add User</button>
+  </form>
+</div>
