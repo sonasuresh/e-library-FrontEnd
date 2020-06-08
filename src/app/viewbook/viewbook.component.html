@@ -1,7 +1,11 @@
 <app-navbar></app-navbar>
 
-
 <div class="container" style="margin-top: 60px;">
+<div *ngIf="getUserLoggedIn()"class="container">
+  <span style="color: red;"  *ngIf="isMembershipValid()">Your Membership Period Is Expired!</span>
+  <span style="color: red;" *ngIf="isTimeValid()">Book Issue Time Exceeded!</span>
+</div>
+
   <div class="modal fade" id="editBookModal" tabindex="-1" role="dialog" aria-labelledby="editBookModal"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -109,7 +113,7 @@
       <div class="card-header text-light bg-info">
 
         Book Details
-        <span style="float: right;"><i class="fa fa-edit" style="cursor:pointer" data-toggle="modal"
+        <span style="float: right;" *ngIf="getAdminLoggedIn()"><i class="fa fa-edit" style="cursor:pointer" data-toggle="modal"
             data-target="#editBookModal"></i>
         </span>
       </div>
@@ -189,8 +193,9 @@
         </div>
         <br />
         <div style="display:flex;justify-content: flex-center;">
-          <button *ngIf="getUserLoggedIn()" class="btn btn-outline-info" style="margin:5px;" data-toggle="modal"
-            data-target="#issueBookModal">Send Issue Request</button>
+          <button *ngIf="getUserLoggedIn()" [disabled]="checkIssueConstraint()"
+          class="btn btn-outline-info" style="margin:5px;" data-toggle="modal"
+            data-target="#issueBookModal" >Send Issue Request</button>
           <div class="modal fade" id="issueBookModal" tabindex="-1" role="dialog" aria-labelledby="issueBookModal"
             aria-hidden="true">
             <div class="modal-dialog" role="document">

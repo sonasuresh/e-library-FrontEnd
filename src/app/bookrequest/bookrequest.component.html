@@ -37,7 +37,7 @@
                     
                     <td>{{book?.issueRequestDate|date}}</td>
                     <td >A {{book?.type}}</td>
-                    <td *ngIf="displayReturnRequestDate()">Return Request Date</td>
+                    <td *ngIf="displayReturnRequestDate()">{{book?.returnRequestDate|date}}</td>
                     <td *ngIf="getAdminLoggedIn()"> <button type="button" class="btn btn-outline-success" (click)="processRequest(book._id,true)">Approve</button></td>
                     <td *ngIf="getAdminLoggedIn()"> <button type="button" class="btn btn-outline-danger" (click)="processRequest(book._id,false)">Reject</button></td>
                     <td *ngIf="displayReturn()"> <button type="button" class="btn btn-outline-danger" (click)="sendReturnRequest(book.books._id,book._id)">Return</button></td>

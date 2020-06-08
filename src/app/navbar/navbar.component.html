@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar navbar-info bg-info">
-    <a class="navbar-brand" href="/">APP NAME</a>
+    <a class="navbar-brand" href="/">E-Library</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -35,8 +35,23 @@
         <li class="nav-item">
           <a class="navbar-brand" href="/history">{{historyBanner}}</a>
       </li>
+     
       </ul>
+     
       <form class="form-inline my-2 my-lg-0">
+        
+        <div>
+          <popover-content #myPopover
+              title="Notifications"
+              [closeOnClickOutside]="true">
+             
+             <div *ngFor="let notification of notifications;let i=index"><p>{{notification.message}}</p>
+              <p>{{notification.time|date}}</p>
+              <hr/></div>
+          </popover-content>
+        <span *ngIf="getUserLoggedIn()" [popoverOnHover]="false" [popover]="myPopover"><i class="fa fa-bell" id="Popover1"  style="font-size: 20px;" ></i></span>&nbsp;&nbsp;
+          
+      </div>
         <button class="btn btn-outline-light my-2 my-sm-0" type="submit" (click)="logout()">LOG OUT</button>
       </form>
     </div>

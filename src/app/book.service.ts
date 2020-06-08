@@ -27,7 +27,10 @@ export class BookService {
   getReturnRequestedBooks(){
     return this.http.get(config.URL + `/book/user/requested/return/${JSON.parse(sessionStorage.getItem(('user')))}`)
   }
+  getNotifications(){ 
+    return this.http.get(config.URL + `/notification/${JSON.parse(sessionStorage.getItem(('user')))}`)
 
+  }
 
   sendIssueRequest(data){
     return this.http.post(config.URL+`/book/request/issue`, data)

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input  } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
+import { BookService } from '../book.service';
+import {PopoverModule} from "ngx-smart-popover";
 
 @Component({
   selector: 'app-navbar',
@@ -8,15 +10,17 @@ import { AuthenticationService } from '../authentication.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  notifications:Array<any>=[]
    historyBanner : String;
    requestBanner:String
    issueRequestBanner:String
    returnRequestBanner:String
 
-  constructor(private  router:Router,private authenticationService:AuthenticationService) { }
+  constructor(private  router:Router,private authenticationService:AuthenticationService,private bookService:BookService) { }
 
   ngOnInit(): void {
+    this.getNotifications()
+
     if(this.authenticationService.isAdminLoggedIn())
     {
       this.historyBanner="Books Issue History"
@@ -31,7 +35,16 @@ export class NavbarComponent implements OnInit {
       this.returnRequestBanner="My Return Requests"
     }
   }
+  getNotifications(){
+    this.bookService.getNotifications().subscribe((res: any) => {
 
+      if(res.success){
+        this.notifications=res.message
+      }else{
+        alert('Error in Fetching Notifications!')
+      }
+    })
+  }
   setRequestType(reqtype){
     sessionStorage.setItem("reqtype",reqtype)
   }

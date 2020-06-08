@@ -1,5 +1,5 @@
 const config = {
-    URL: "http://localhost:4000"
+    URL: "https://e-library-backend.herokuapp.com"
 }
 module.exports = {
     config

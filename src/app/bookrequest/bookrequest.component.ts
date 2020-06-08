@@ -112,6 +112,7 @@ export class BookrequestComponent implements OnInit {
    
       this.bookService.sendReturnRequest(body).subscribe((res: any) => {
         if(res.success){
+          alert("Return Request Send Successfully!")
           window.location.reload()
         }else{
           alert('Error in Processing the request!')

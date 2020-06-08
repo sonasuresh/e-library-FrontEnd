@@ -22,8 +22,12 @@ export class ViewbookComponent implements OnInit {
       if (params.bookId) {
         this.bookId = params.bookId
         this.getBookDetails()
+
       }
     })
+  }
+  isMembershipValid(){
+    return !JSON.parse(sessionStorage.getItem('membershipFlag'))
   }
   getBookDetails() {
     this.bookService.getBookDetails(this.bookId).subscribe((res: any) => {
@@ -35,10 +39,19 @@ export class ViewbookComponent implements OnInit {
       this.availablestatus = this.book.availableStatus
     })
   }
-
-  issueBook() {
+  isTimeValid(){
     var date=new Date()
     if((date.getHours()>=10 && date.getHours()<17)){
+      return false
+    }else{
+      return true
+    }
+  }
+  checkIssueConstraint(){
+    return JSON.parse(sessionStorage.getItem('membershipFlag')) && this.isTimeValid()
+  }
+  issueBook() {
+
       const data = {
         bookId: this.bookId,
         userId: JSON.parse(sessionStorage.getItem('user')),
@@ -52,9 +65,6 @@ export class ViewbookComponent implements OnInit {
         
       }catch(error){
         alert('Error in sending issue request')
-      }
-    }else{
-      alert("Issue Time Exceeded")
     }
     
    

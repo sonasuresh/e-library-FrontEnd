@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('token', JSON.stringify(token));
         if(res.role=='USER'){
           sessionStorage.setItem('user', JSON.stringify(userId));
+          sessionStorage.setItem('membershipFlag',res.membershipValidFlag)
          this.router.navigate(['library']);
 
         }else{

@@ -16,6 +16,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { CreatebookComponent } from './createbook/createbook.component';
 import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { PopoverModule } from 'ngx-smart-popover';
+import { InterceptorService } from './interceptor.service';
 
 
 @NgModule({
@@ -40,8 +42,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule, 
     TagInputModule,
     BrowserAnimationsModule,
+    PopoverModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,14 +13,14 @@ import { CreatebookComponent } from './createbook/createbook.component';
 
 const routes: Routes = [
   {path:"",component:LoginComponent},
-  {path: 'viewbook', component: ViewbookComponent },
-  {path:"library",component:LibraryComponent},
-  {path:"users",component:UsersComponent},
-  {path:"registeruser",component:CreateuserComponent},
-  {path:"request",component:BookrequestComponent},
-  {path:"history",component:LedgerComponent},
-  {path:"profile",component:ProfileComponent},
-  {path:"createbook",component:CreatebookComponent},
+  {path: "viewbook", component: ViewbookComponent,canActivate:[AuthGuardService]},
+  {path:"library",component:LibraryComponent,canActivate:[AuthGuardService]},
+  {path:"users",component:UsersComponent,canActivate:[AuthGuardService]},
+  {path:"registeruser",component:CreateuserComponent,canActivate:[AuthGuardService]},
+  {path:"request",component:BookrequestComponent,canActivate:[AuthGuardService]},
+  {path:"history",component:LedgerComponent,canActivate:[AuthGuardService]},
+  {path:"profile",component:ProfileComponent,canActivate:[AuthGuardService]},
+  {path:"createbook",component:CreatebookComponent,canActivate:[AuthGuardService]},
 ];
 
 @NgModule({
